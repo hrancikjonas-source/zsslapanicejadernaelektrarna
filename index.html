@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaderná elektrárna Temelín - 360° Průvodce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .building-card:hover { transform: translateY(-8px); border-color: #3b82f6; }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-900">
+
+    <div id="app">
+        <!-- HLAVNÍ STRÁNKA (HOME) -->
+        <div id="home-page">
+            <header class="bg-slate-900 text-white py-24 px-4 text-center relative overflow-hidden">
+                <div class="absolute inset-0 opacity-50">
+                    <img src="https://raw.githubusercontent.com/hrancikjonas-source/jadern-alektr-rna-Temelin-zs-slapanice-/main/Snímek%20obrazovky%202026-03-30%20v%2014.20.48.jpg" 
+                         class="w-full h-full object-cover" 
+                         alt="Temelín panorama">
+                </div>
+                <div class="relative z-10 bg-slate-900/70 p-10 inline-block rounded-[3rem] backdrop-blur-xl border border-white/10 shadow-2xl">
+                    <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tighter uppercase text-white">
+                        TEMELÍN <span class="text-blue-500">360°</span>
+                    </h1>
+                    <p class="text-xl opacity-90 max-w-2xl mx-auto font-light tracking-wide text-white">
+                        Fyzikální průvodce s podporou QR kódů pro každou část.
+                    </p>
+                </div>
+            </header>
+
+            <!-- Rozcestník karet (Unikátní URL pro každou kartu přes #id) -->
+            <section class="max-w-6xl mx-auto py-20 px-4">
+                <h2 class="text-center text-slate-400 uppercase tracking-[0.4em] text-xs font-bold mb-12">Vyberte sekci nebo naskenujte QR</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="buildings-grid"></div>
+            </section>
+
+            <!-- Kvíz -->
+            <section class="bg-slate-100 py-20 border-y border-slate-200 text-center">
+                <div class="max-w-2xl mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-8 italic underline">Závěrečný testík</h2>
+                    <div id="quiz-container" class="bg-white p-8 rounded-[2.5rem] shadow-xl text-left space-y-6 text-slate-700"></div>
+                    <button id="quiz-submit" onclick="evaluateQuiz()" class="mt-8 w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black uppercase tracking-widest transition-all shadow-lg">
+                        Vyhodnotit odpovědi
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- STRÁNKA DETAILU (Zobrazí se po kliknutí nebo přes přímou URL #id) -->
+        <div id="detail-page" class="hidden min-h-screen animate-fade-in">
+            <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-md">
+                <div class="max-w-6xl mx-auto flex items-center justify-between">
+                    <button onclick="goBack()" class="flex items-center gap-2 hover:text-blue-300 transition-colors font-medium text-white">
+                        <i data-lucide="arrow-left" size="20"></i>
+                        <span>Zpět na hlavní menu</span>
+                    </button>
+                    <span id="current-url-display" class="text-[10px] opacity-30 font-mono tracking-tighter uppercase text-white"></span>
+                </div>
+            </nav>
+            <main class="max-w-4xl mx-auto py-12 px-4" id="detail-content"></main>
+        </div>
+
+        <!-- PATIČKA -->
+        <footer class="bg-slate-900 py-20 text-center text-white border-t border-white/5">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="flex justify-center gap-6 mb-8">
+                    <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg text-white">
+                        <i data-lucide="user" size="28"></i>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-black tracking-tight mb-2 text-white">Jonáš Hrančík</h3>
+                <p class="text-blue-400 font-bold text-xs uppercase tracking-[0.3em] mb-8">9. třída ZŠ Šlapanice</p>
+                
+                <div class="h-px w-32 bg-white/10 mx-auto mb-8"></div>
+                
+                <p class="text-white/40 text-[11px] uppercase tracking-[0.2em] font-light">
+                    &copy; 2026 Všechna práva vyhrazena.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const buildings = [
+            { 
+                id: 'rae', 
+                title: "Reaktorový sál", 
+                icon: 'atom', 
+                color: 'bg-blue-600', 
+                desc: 'Srdce elektrárny s reaktorem VVER-1000.', 
+                content: 'V reaktoru probíhá řízená řetězová reakce. Neutrony narážejí do jader Uranu-235, která se štěpí na dva menší fragmenty. Při tomto procesu se uvolňuje obrovské množství tepla. Voda v primárním okruhu je pod tlakem 15,7 MPa, aby nevařila ani při teplotě 320 °C.' 
+            },
+            { 
+                id: 'pomocne', 
+                title: "Budova pomocných provozů", 
+                icon: 'shield-alert', 
+                color: 'bg-indigo-500', 
+                desc: 'Chemická úprava a bezpečnostní systémy.', 
+                content: 'Zajišťuje extrémní čistotu vody v primárním okruhu, aby nedocházelo ke korozi materiálů. Nacházejí se zde také systémy pro filtraci a zachycování radioaktivních plynů.' 
+            },
+            { 
+                id: 'strojovna', 
+                title: "Strojovna", 
+                icon: 'settings', 
+                color: 'bg-amber-500', 
+                desc: 'Přeměna páry na elektřinu.', 
+                content: 'Pára ze sekundárního okruhu roztáčí lopatky turbíny silou, která ji uvádí do pohybu o rychlosti 3000 otáček za minutu. V generátoru pak na principu elektromagnetické indukce vzniká proud.' 
+            },
+            { 
+                id: 'veze', 
+                title: "Chladicí věže", 
+                icon: 'cloud', 
+                color: 'bg-cyan-500', 
+                desc: 'Chlazení sekundárního okruhu.', 
+                content: 'Fungují jako obří tepelný výměník. Teplá voda se rozstřikuje uvnitř věže a vzduch proudící zdola nahoru ji ochlazuje. Charakteristický tvar zajišťuje přirozený komínový tah.' 
+            },
+            { 
+                id: 'cerpaci', 
+                title: "Čerpací stanice", 
+                icon: 'droplets', 
+                color: 'bg-blue-800', 
+                desc: 'Oběhová čerpadla a doprava vody.', 
+                content: 'Srdce vodních okruhů. Zajišťují cirkulaci v primárním okruhu (chlazení reaktoru) i v sekundárním okruhu (pohon turbíny).' 
+            },
+            { 
+                id: 'rozvodna', 
+                title: "Rozvodna", 
+                icon: 'zap', 
+                color: 'bg-orange-600', 
+                desc: 'Vývod výkonu do sítě 400 kV.', 
+                content: 'Zde se napětí z generátoru zvyšuje v transformátorech na 400 000 V. Vyšší napětí umožňuje přenos elektřiny na velké vzdálenosti s minimálními ztrátami.' 
+            }
+        ];
+
+        const quizData = [
+            { q: "Co je účelem hyperboloidního tvaru chladicích věží?", a: ["Lepší vzhled", "Přirozený komínový tah vzduchu", "Ochrana před větrem"], correct: 1 },
+            { q: "Proč se v rozvodně zvyšuje napětí na 400 000 V?", a: ["Rychlejší tok", "Snížení tepelných ztrát v síti", "Tenčí dráty"], correct: 1 }
+        ];
+
+        let userAnswers = {};
+
+        function init() {
+            // Generování karet
+            const grid = document.getElementById('buildings-grid');
+            buildings.forEach(b => {
+                const card = document.createElement('div');
+                card.className = "building-card bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 cursor-pointer transition-all duration-300";
+                // Změna URL hashe při kliknutí
+                card.onclick = () => { window.location.hash = b.id; };
+                card.innerHTML = `
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-white ${b.color} shadow-lg shadow-gray-200">
+                        <i data-lucide="${b.icon}"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">${b.title}</h3>
+                    <p class="text-gray-500 text-sm mb-6">${b.desc}</p>
+                    <div class="flex items-center text-blue-600 font-bold text-xs uppercase gap-2">Detail sekce <i data-lucide="arrow-right" size="14"></i></div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Generování kvízu
+            const quizCont = document.getElementById('quiz-container');
+            quizData.forEach((q, i) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = "space-y-3";
+                qDiv.innerHTML = `<p class="font-bold text-slate-800">${i+1}. ${q.q}</p><div class="grid gap-2" id="q-${i}"></div>`;
+                quizCont.appendChild(qDiv);
+                const optDiv = qDiv.querySelector(`#q-${i}`);
+                q.a.forEach((opt, oi) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all text-sm";
+                    btn.innerText = opt;
+                    btn.onclick = () => selectOption(i, oi, btn);
+                    optDiv.appendChild(btn);
+                });
+            });
+
+            lucide.createIcons();
+            // Prvotní kontrola URL po načtení (pro přímé vstupy z QR)
+            setTimeout(handleRouting, 150);
+        }
+
+        // TATO FUNKCE DĚLÁ TO "SAMOSTATNÉ URL" PRO KAŽDOU KARTU
+        function handleRouting() {
+            const hash = window.location.hash.split('?')[0].replace('#', '');
+            const building = buildings.find(b => b.id === hash);
+            
+            if (building) {
+                renderDetail(building);
+            } else {
+                renderHome();
+            }
+        }
+
+        function renderDetail(b) {
+            const content = document.getElementById('detail-content');
+            document.getElementById('current-url-display').innerText = `SECTION: /${b.id}`;
+            content.innerHTML = `
+                <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-gray-100">
+                    <div class="${b.color} p-12 text-white flex flex-col md:flex-row items-center gap-8">
+                        <div class="p-6 bg-white/20 rounded-3xl backdrop-blur-sm text-white"><i data-lucide="${b.icon}" size="56"></i></div>
+                        <div class="text-center md:text-left">
+                            <h1 class="text-4xl font-black mb-2 text-white">${b.title}</h1>
+                            <p class="opacity-80 text-lg font-light uppercase tracking-widest text-white">Technický rozbor</p>
+                        </div>
+                    </div>
+                    <div class="p-12">
+                        <p class="text-xl text-gray-600 leading-relaxed mb-10 italic border-l-4 border-blue-100 pl-6">${b.content}</p>
+                        <button onclick="goBack()" class="mt-12 w-full py-5 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-bold transition-all flex items-center justify-center gap-3 shadow-xl">
+                             <i data-lucide="arrow-left" size="18"></i> Zpět do menu
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('detail-page').classList.remove('hidden');
+            lucide.createIcons();
+            window.scrollTo(0,0);
+        }
+
+        function renderHome() {
+            document.getElementById('home-page').classList.remove('hidden');
+            document.getElementById('detail-page').classList.add('hidden');
+        }
+
+        function goBack() {
+            // Vyčistí URL bez reloadu
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+            renderHome();
+        }
+
+        function selectOption(qIdx, oIdx, btn) {
+            const parent = btn.parentElement;
+            Array.from(parent.children).forEach(child => {
+                child.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all text-sm";
+            });
+            btn.className = "w-full text-left p-4 rounded-xl border border-blue-600 bg-blue-50 text-blue-900 text-sm font-semibold";
+            userAnswers[qIdx] = oIdx;
+        }
+
+        function evaluateQuiz() {
+            quizData.forEach((q, i) => {
+                const optDiv = document.getElementById(`q-${i}`);
+                Array.from(optDiv.children).forEach((btn, oi) => {
+                    btn.disabled = true;
+                    if (oi === q.correct) {
+                        btn.className = "w-full text-left p-4 rounded-xl border border-green-500 bg-green-50 text-green-700 text-sm font-bold";
+                    } else if (userAnswers[i] === oi) {
+                        btn.className = "w-full text-left p-4 rounded-xl border border-red-500 bg-red-50 text-red-700 text-sm";
+                    }
+                });
+            });
+            document.getElementById('quiz-submit').innerText = "Hotovo";
+            document.getElementById('quiz-submit').disabled = true;
+        }
+
+        // Reaguje na změnu v URL (např. při kliknutí na tlačítko "zpět" v prohlížeči)
+        window.addEventListener('hashchange', handleRouting);
+        window.onload = init;
+    </script>
+</body>
+</html>
