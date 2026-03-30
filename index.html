@@ -13,6 +13,13 @@
         .building-card:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.2); }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Styly pro kvíz */
+        .quiz-option { transition: all 0.2s ease; border: 2px solid #e2e8f0; position: relative; }
+        .quiz-option:hover:not(.disabled) { background-color: #f1f5f9; border-color: #3b82f6; }
+        .quiz-option.correct { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534; }
+        .quiz-option.wrong { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b; }
+        .quiz-option.disabled { cursor: default; }
     </style>
 </head>
 <body class="bg-gray-50 text-slate-900">
@@ -31,9 +38,33 @@
                 </div>
             </header>
 
+            <!-- Rozcestník budov -->
             <section class="max-w-7xl mx-auto py-24 px-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="buildings-grid">
                     <!-- Karty se vygenerují přes JS -->
+                </div>
+            </section>
+
+            <!-- Interaktivní Kvíz -->
+            <section class="bg-slate-100 py-24 border-y border-slate-200">
+                <div class="max-w-3xl mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <span class="bg-blue-600 text-white text-[10px] px-4 py-1.5 rounded-full font-black uppercase tracking-widest">Test znalostí</span>
+                        <h2 class="text-4xl font-black mt-4 text-slate-900">Co jste si zapamatovali?</h2>
+                    </div>
+                    
+                    <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-200">
+                        <div id="quiz-container">
+                            <!-- Kvíz se vygeneruje přes JS -->
+                        </div>
+                        <div id="quiz-result" class="hidden mt-8 p-6 rounded-2xl text-center font-bold"></div>
+                        <button id="submit-quiz" onclick="evaluateQuiz()" class="mt-8 w-full py-6 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black uppercase tracking-widest transition-all shadow-lg shadow-blue-200">
+                            Vyhodnotit odpovědi
+                        </button>
+                        <button id="reset-quiz" onclick="resetQuiz()" class="hidden mt-4 w-full py-6 bg-slate-800 text-white rounded-2xl font-black uppercase tracking-widest transition-all">
+                            Zkusit znovu
+                        </button>
+                    </div>
                 </div>
             </section>
         </div>
@@ -122,6 +153,24 @@
             }
         ];
 
+        const quizData = [
+            {
+                q: "K čemu slouží hyperboloidní tvar chladicích věží?",
+                options: ["Zlepšuje estetiku krajiny", "Vytváří přirozený komínový tah vzduchu", "Chrání před nárazy větru"],
+                correct: 1
+            },
+            {
+                q: "Proč se v rozvodně zvyšuje napětí na 400 kV?",
+                options: ["Aby elektřina tekla rychleji", "Aby se snížily tepelné ztráty v rozvodech", "Aby se ušetřilo za izolaci"],
+                correct: 1
+            },
+            {
+                q: "Jaká je funkce vody v primárním okruhu reaktoru?",
+                options: ["Chladivo a moderátor neutronů", "Pouze pohon turbíny", "Mazání čerpadel"],
+                correct: 0
+            }
+        ];
+
         function init() {
             const grid = document.getElementById('buildings-grid');
             buildings.forEach(b => {
@@ -138,8 +187,86 @@
                 `;
                 grid.appendChild(card);
             });
+            
+            renderQuiz();
             lucide.createIcons();
             setTimeout(handleRouting, 100);
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizData.map((q, qIdx) => `
+                <div class="mb-10 last:mb-0" id="question-${qIdx}">
+                    <p class="font-bold text-slate-800 mb-4 flex gap-3 italic">
+                        <span class="text-blue-600 not-italic">${qIdx + 1}.</span> ${q.q}
+                    </p>
+                    <div class="grid gap-3">
+                        ${q.options.map((opt, optIdx) => `
+                            <label class="quiz-option flex items-center p-4 rounded-xl cursor-pointer" data-q="${qIdx}" data-opt="${optIdx}">
+                                <input type="radio" name="q${qIdx}" value="${optIdx}" class="mr-4 w-4 h-4 accent-blue-600">
+                                <span class="text-sm text-slate-700 font-medium">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function evaluateQuiz() {
+            let score = 0;
+            let allAnswered = true;
+
+            quizData.forEach((q, idx) => {
+                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                const optionsElements = document.querySelectorAll(`label[data-q="${idx}"]`);
+                
+                if (!selected) {
+                    allAnswered = false;
+                }
+
+                optionsElements.forEach(label => {
+                    const optIdx = parseInt(label.getAttribute('data-opt'));
+                    label.classList.add('disabled');
+                    label.querySelector('input').disabled = true;
+
+                    // Vždy označit správnou odpověď zeleně
+                    if (optIdx === q.correct) {
+                        label.classList.add('correct');
+                        label.innerHTML += `<i data-lucide="check-circle-2" class="absolute right-4 text-green-600" size="20"></i>`;
+                    }
+
+                    // Pokud uživatel vybral špatnou, označit ji červeně
+                    if (selected && parseInt(selected.value) === optIdx && optIdx !== q.correct) {
+                        label.classList.add('wrong');
+                        label.innerHTML += `<i data-lucide="x-circle" class="absolute right-4 text-red-600" size="20"></i>`;
+                    }
+                });
+
+                if (selected && parseInt(selected.value) === q.correct) {
+                    score++;
+                }
+            });
+
+            if (!allAnswered) {
+                // I když nebylo vše zodpovězeno, vyhodnotíme co je
+            }
+
+            const result = document.getElementById('quiz-result');
+            result.classList.remove('hidden');
+            result.className = `mt-8 p-6 rounded-2xl text-center font-bold ${score === quizData.length ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`;
+            result.innerText = `Tvůj výsledek: ${score} z ${quizData.length} správně!`;
+            
+            document.getElementById('submit-quiz').classList.add('hidden');
+            document.getElementById('reset-quiz').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function resetQuiz() {
+            renderQuiz();
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('submit-quiz').classList.remove('hidden');
+            document.getElementById('reset-quiz').classList.add('hidden');
+            lucide.createIcons();
         }
 
         function handleRouting() {
