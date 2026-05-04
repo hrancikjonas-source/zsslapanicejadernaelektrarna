@@ -43,15 +43,12 @@
                     <h1 class="text-3xl md:text-6xl font-black mb-4 tracking-tighter uppercase italic leading-tight">
                         JADERNÁ ELEKTRÁRNA <span class="text-blue-500">360°</span>
                     </h1>
-                    <p class="text-sm md:text-xl opacity-95 font-light uppercase tracking-[0.3em]">Fyzikální projekt 2026</p>
+                    <p class="text-sm md:text-xl opacity-95 font-light uppercase tracking-[0.3em]">Komplexní fyzikální studie sekcí</p>
                 </div>
             </header>
 
-            <!-- Rozcestník budov -->
             <section class="max-w-7xl mx-auto py-16 md:py-24 px-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" id="buildings-grid">
-                    <!-- Karty se vygenerují přes JS -->
-                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" id="buildings-grid"></div>
             </section>
 
             <!-- Energetické porovnání -->
@@ -78,18 +75,11 @@
                 </div>
             </section>
 
-            <!-- Interaktivní Kvíz -->
+            <!-- Kvíz -->
             <section class="bg-slate-100 py-16 md:py-24 border-y border-slate-200">
                 <div class="max-w-3xl mx-auto px-6">
-                    <div class="text-center mb-12">
-                        <span class="bg-blue-600 text-white text-[10px] px-4 py-1.5 rounded-full font-black uppercase tracking-widest">Test znalostí</span>
-                        <h2 class="text-3xl md:text-4xl font-black mt-4 text-slate-900">Co jste si zapamatovali?</h2>
-                    </div>
-                    
                     <div class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-slate-200">
-                        <div id="quiz-container">
-                            <!-- Kvíz se vygeneruje přes JS -->
-                        </div>
+                        <div id="quiz-container"></div>
                         <div id="quiz-error" class="hidden mt-4 p-4 bg-amber-50 text-amber-700 rounded-xl text-center text-sm font-bold border border-amber-200 italic">
                             Prosím, odpovězte na všechny otázky před vyhodnocením.
                         </div>
@@ -122,14 +112,10 @@
         <footer class="bg-slate-900 py-12 text-center text-white border-t border-white/5">
             <div class="max-w-xl mx-auto px-6">
                 <p class="text-blue-400 text-[8px] font-bold uppercase tracking-[0.4em] mb-2 opacity-60">Projekt vytvořil</p>
-                <h3 class="text-lg font-black tracking-tight text-white uppercase italic">
-                    Jonáš Hrančík
-                </h3>
+                <h3 class="text-lg font-black tracking-tight text-white uppercase italic">Jonáš Hrančík</h3>
                 <p class="text-slate-500 text-[10px] font-medium uppercase tracking-widest">9. třída ZŠ Šlapanice</p>
                 <div class="h-px w-12 bg-white/10 mx-auto my-4"></div>
-                <p class="text-white/20 text-[8px] uppercase tracking-[0.2em] font-light italic">
-                    Fyzikální projekt &copy; 2026
-                </p>
+                <p class="text-white/20 text-[8px] uppercase tracking-[0.2em] font-light italic">Fyzikální projekt &copy; 2026</p>
             </div>
         </footer>
     </div>
@@ -141,72 +127,72 @@
                 title: "Reaktorový sál", 
                 icon: 'atom', 
                 color: 'bg-blue-600', 
-                desc: 'Srdce elektrárny s reaktorem VVER-1000 a primárním okruhem.',
+                desc: 'Centrální bod elektrárny. Místo, kde se hmota mění v energii.',
                 visual: `<div class="relative w-24 h-24 flex items-center justify-center"><i data-lucide="atom" size="48" class="text-blue-200 animate-pulse"></i></div>`,
-                content: `Reaktorový sál je uzavřen v masivní železobetonové schránce zvané kontejment s tloušťkou stěn až 1,2 metru. Uprostřed se nachází tlaková nádoba reaktoru VVER-1000, kde probíhá řízená štěpná reakce. Neutrony narážejí do jader Uranu-235, která se rozpadají a uvolňují kinetickou energii (teplo). Voda v primárním okruhu funguje jako moderátor, který zpomaluje rychlé neutrony na tzv. tepelné neutrony, jež lépe vyvolávají další štěpení. Aby se zabránilo varu vody při teplotě 320 °C, udržuje kompenzátor objemu v systému tlak 15,7 MPa. Bezpečnost hlídají havarijní tyče s vysokým obsahem bóru, které v případě potřeby spadnou do aktivní zóny do 4 sekund a okamžitě pohltí neutrony, čímž reakci zastaví.` 
+                content: `Reaktorový sál je klíčovým objektem jaderné elektrárny. V jeho centru se nachází tlaková nádoba reaktoru (u nás typ VVER-1000), která je vyrobena z vysoce odolné oceli. V aktivní zóně reaktoru je umístěno 163 palivových souborů obsahujících miliony uranových pelet. Fyzikální podstata spočívá v řízené řetězové reakci: do jádra izotopu Uranu-235 narazí neutron, jádro se rozštěpí na dva odštěpky a uvolní se obrovské množství tepla spolu s dalšími 2–3 neutrony. Aby se reakce nevymkla kontrole, používá se voda jako moderátor (zpomalovač neutronů) a kyselina boritá jako absorbátor. Celý prostor je uzavřen pod masivním železobetonovým kontejmentem, který má dvojitou stěnu se sáním v meziptostoru, aby zabránil jakémukoliv úniku radioaktivity i v případě pádu letadla nebo zemětřesení o síle 7 stupňů Richterovy škály. Tlak v reaktoru dosahuje extrémních 15,7 MPa, což zabraňuje varu vody i při teplotě přes 320 °C.` 
             },
             { 
                 id: 'pomocne', 
                 title: "Pomocné provozy", 
                 icon: 'shield-alert', 
                 color: 'bg-indigo-500', 
-                desc: 'Chemická úprava vody a bezpečnostní filtrace.', 
+                desc: 'Zázemí pro chemickou stabilitu a radiační bezpečnost.', 
                 visual: `<div class="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center"><i data-lucide="shield-check" size="48" class="text-indigo-600"></i></div>`,
-                content: `Budova pomocných provozů (BPP) je klíčová pro udržení stability celého systému. Hlavním úkolem je speciální úprava vody, která cirkuluje v reaktoru. Tato voda musí být demineralizovaná a chemicky ošetřená (např. kyselinou boritou pro regulaci výkonu), aby se minimalizovala koroze drahých materiálů. Součástí jsou také systémy pro zachycování a filtraci radioaktivních plynů a kapalin. Vzduch v kontejmentu je neustále čištěn přes speciální filtry s aktivním uhlím, které spolehlivě zachycují izotopy jódu a další částice. Díky těmto bariérám je radiační zátěž v okolí elektrárny nižší, než je přirozené pozadí v některých jiných částech ČR.` 
+                content: `Budova pomocných provozů je pro laika nenápadná, ale pro bezpečný chod elektrárny zcela nezbytná. Její hlavní funkcí je chemická kontrola a úprava vody primárního okruhu. Voda v kontaktu s palivem nesmí obsahovat nečistoty, které by se mohly stát radioaktivními nebo způsobovat korozi drahých materiálů reaktoru. V BPP se nacházejí iontoměničové filtry, které odstraňují rozpuštěné látky s přesností na miliardtiny gramu. Dále zde sídlí systémy pro čištění plynných emisí, kde jsou radioaktivní plyny zadržovány v adsorpčních kolonách s aktivním uhlím, dokud se nerozpadnou na bezpečné prvky. Budova je rovněž vybavena sklady pro vyhořelé palivo (bazény skladování), kde palivové soubory po dobu několika let chladnou pod hladinou vody, která slouží jako vynikající stínění proti záření gama a neutronovému toku.` 
             },
             { 
                 id: 'strojovna', 
                 title: "Strojovna", 
                 icon: 'settings', 
                 color: 'bg-amber-500', 
-                desc: 'Přeměna tepelné energie na mechanickou a elektrickou.', 
+                desc: 'Hala plná obřích strojů měnících páru v pohyb.', 
                 visual: `<div class="w-24 h-24 flex items-center justify-center"><i data-lucide="settings" size="64" class="text-amber-200 spin-slow"></i></div>`,
-                content: `Strojovna je kolosální hala dlouhá stovky metrů, ve které se nachází turbogenerátor. Horká pára ze sekundárního okruhu (vyráběná v parogenerátorech) proudí pod tlakem na lopatky turbíny. Turbína se skládá z jednoho vysokotlakého a tří nízkotlakých dílů, které se točí rychlostí 3000 otáček za minutu. Mechanická energie rotace je přenášena hřídelí na generátor. V něm se otáčí rotor (elektromagnet), který ve vinutí statoru indukuje střídavý elektrický proud o napětí 24 kV. Jediný takový generátor dodává výkon 1085 MW, což představuje obrovský tok energie přeměněný z neviditelného tepla jaderné reakce.` 
+                content: `Strojovna je impozantní hala, kde se tepelná energie páry mění na mechanickou energii rotace a následně na elektřinu. Dominantou je turbogenerátor dlouhý přes 60 metrů. Pára ze sekundárního okruhu sem přichází pod tlakem 6,3 MPa a naráží na lopatky turbíny. Turbína má několik stupňů (vysokotlaký a nízkotlaké), aby se energie páry využila na maximum. Hřídel turbíny je pevně spojena s rotorem generátoru. Generátor je v podstatě obří elektromagnet, který se točí uvnitř statoru. Díky jevu elektromagnetické indukce vzniká ve statoru elektrický proud. Celá sestava rotuje s chirurgickou přesností 3000 otáček za minutu (frekvence 50 Hz v síti). Účinnost tohoto cyklu je zásadně závislá na teplotním rozdílu mezi vstupující parou a chlazením v kondenzátoru, kde se pára mění zpět na vodu pomocí chladicí vody z věží.` 
             },
             { 
                 id: 'veze', 
                 title: "Chladicí věže", 
                 icon: 'cloud', 
                 color: 'bg-cyan-500', 
-                desc: 'Dominantní výměníky tepla vysoké 155 metrů.', 
+                desc: 'Zákon termodynamiky v praxi – odvod zbytkového tepla.', 
                 visual: `<div class="relative w-24 h-24 flex flex-col items-center justify-end"><div class="steam bg-white/40 w-8 h-8 rounded-full mb-2"></div><div class="steam bg-white/30 w-12 h-12 rounded-full mb-4" style="animation-delay: 1s"></div><i data-lucide="tower-control" size="48" class="text-cyan-200"></i></div>`,
-                content: `Chladicí věže slouží k odvodu zbytkového tepla, které již nelze využít k výrobě elektřiny. Pára, která prošla turbínou, musí zkondenzovat zpět na kapalnou vodu, aby se dala čerpat zpět do parogenerátoru. Ke kondenzaci se využívá chladicí voda ze třetího okruhu. Tato voda se v chladicí věži rozstřikuje a stéká dolů, zatímco proti ní proudí vzduch. Hyperboloidní tvar věže zajišťuje přirozený komínový tah – teplý vlhký vzduch stoupá vzhůru a ochlazuje padající kapky vody. To, co vidíme jako bílá oblaka nad věžemi, je čistá vodní pára, nikoliv kouř. Odparem se z jedné věže ztratí až 300 litrů vody za sekundu, která se musí doplňovat z blízkých vodních toků (např. Vltavy).` 
+                content: `Chladicí věže jsou nejviditelnějším symbolem jaderné elektrárny, ačkoliv samy o sobě neobsahují žádný radioaktivní materiál. Jejich úkolem je odvést zbytkové teplo do atmosféry. Podle druhého termodynamického zákona nelze veškeré teplo přeměnit na práci; část se musí "odhodit". Ve věžích vysokých až 155 metrů se horká voda rozstřikuje do jemné mlhy. Proti ní stoupá chladnější vzduch díky tzv. komínovému efektu, který je podpořen hyperboloidním tvarem věže. Dochází k odparu části vody, čímž se zbytek vody ochladí. Tato ochlazená voda pak putuje zpět do kondenzátorů ve strojovně. Onen bílý "kouř" nad věžemi není nic jiného než čistá vodní pára, která vzniká při tomto ochlazování. Spotřeba vody je značná, proto jsou elektrárny stavěny u řek, které doplňují odpařenou vodu do systému.` 
             },
             { 
                 id: 'cerpaci', 
                 title: "Čerpací stanice", 
                 icon: 'droplets', 
                 color: 'bg-blue-800', 
-                desc: 'Oběhová čerpadla pro transport tisíců tun vody.', 
+                desc: 'Logistické centrum pro miliony litrů vody za sekundu.', 
                 visual: `<div class="flex gap-2"><i data-lucide="waves" size="32" class="text-blue-300 animate-bounce"></i><i data-lucide="waves" size="32" class="text-blue-300 animate-bounce" style="animation-delay: 0.2s"></i></div>`,
-                content: `Vlastní spotřeba elektrárny (pro pohon čerpadel a systémů) činí cca 50 MW, což je výkon středně velké vodní elektrárny. Nejdůležitější částí jsou cirkulační čerpadla chladicí vody. Musí přečerpat až 50 000 m³ vody za hodinu. Systém je navržen tak, aby i při totálním výpadku napájení (blackoutu) byla zajištěna cirkulace vody pomocí nouzových dieselgenerátorů nebo hydrostatického spádu. Bez neustálého proudění vody by se teplo v reaktoru nahromadilo, což by mohlo vést k poškození paliva. Čerpací stanice jsou tedy kritickým bezpečnostním prvkem, který udržuje "tepelný tep" elektrárny v bezpečných mezích.` 
+                content: `Čerpací stanice jsou životně důležitým uzlem, který zajišťuje cirkulaci vody ve všech třech okruzích elektrárny. Hlavní cirkulační čerpadla jsou obrovské stroje s výkonem několika megawattů. Voda musí v primárním okruhu proudit s neuvěřitelnou spolehlivostí – pokud by se proudění zastavilo, hrozilo by přehřátí paliva i po zastavení reaktoru (zbytkový výkon). Proto jsou čerpadla jištěna několika nezávislými zdroji energie, včetně obřích dieselgenerátorů, které nastartují do několika sekund po výpadku sítě. Čerpací stanice také filtrují vodu z řeky od nečistot a ryb pomocí mechanických česlic a rotačních sít, aby nedošlo k ucpání kondenzátorů ve strojovně. Bez plynulého toku vody by elektrárna nemohla vyrábět výkon ani zajistit svou bezpečnost.` 
             },
             { 
                 id: 'rozvodna', 
                 title: "Rozvodna", 
                 icon: 'zap', 
                 color: 'bg-orange-600', 
-                desc: 'Vývod elektrického výkonu do sítě 400 kV.', 
+                desc: 'Místo spojení elektrárny s celostátní energetickou sítí.', 
                 visual: `<div class="w-24 h-24 flex items-center justify-center"><i data-lucide="zap" size="48" class="text-orange-300 animate-pulse"></i></div>`,
-                content: `V rozvodně dochází k finální distribuci energie. Proud z generátoru o napětí 24 000 V by při přenosu na velké vzdálenosti způsoboval obrovské tepelné ztráty v drátech (podle Joulův-Lenzova zákona). Proto se v blokových transformátorech napětí zvyšuje na velmi vysoké napětí 400 000 V (400 kV). Při takto vysokém napětí protéká vodiči menší proud při stejném přenášeném výkonu, což drasticky snižuje ztráty. Rozvodna je vybavena mohutnými vypínači a odpojovači, které dokáží bezpečně přerušit tok energie v případě poruchy v rozvodné síti ČR. Z tohoto místa odchází stabilní bezemisní energie, která tvoří přibližně 20 % celkové spotřeby České republiky.` 
+                content: `Rozvodna je koncovým bodem elektrárny, kde se vyrobená elektřina odesílá ke spotřebitelům. Generátory vyrábějí proud o napětí zhruba 24 kV. Toto napětí je ale příliš nízké pro přenos na velké vzdálenosti, protože by vznikaly obrovské ztráty vlivem odporu vodičů. Proto jsou v těsné blízkosti strojovny umístěny blokové transformátory, které napětí "vystřelí" na 400 kV (velmi vysoké napětí). V rozvodně jsou pak instalovány masivní vypínače plněné speciálním plynem (SF6), které dokáží bezpečně rozpojit obvody i při plném zatížení nebo zkratu. Celý tento systém je monitorován dispečinkem, který vyrovnává nabídku a poptávku v síti. Jaderné elektrárny v rozvodně fungují jako tzv. "základní zatížení" – běží konstantně a dodávají stabilní výkon, bez kterého by síť s nestabilními zdroji (vítr, slunce) mohla snadno zkolabovat.` 
             }
         ];
 
         const quizData = [
             {
-                q: "K čemu slouží hyperboloidní tvar chladicích věží?",
-                options: ["Zlepšuje estetiku krajiny", "Vytváří přirozený komínový tah vzduchu", "Chrání před nárazy větru"],
-                correct: 1
-            },
-            {
-                q: "Proč se v rozvodně zvyšuje napětí na 400 kV?",
-                options: ["Aby elektřina tekla rychleji", "Aby se snížily tepelné ztráty v rozvodech", "Aby se ušetřilo za izolaci"],
-                correct: 1
-            },
-            {
-                q: "Jaká je funkce vody v primárním okruhu reaktoru?",
-                options: ["Chladivo a moderátor neutronů", "Pouze pohon turbíny", "Mazání čerpadel"],
+                q: "Jaký je hlavní rozdíl mezi primárním a sekundárním okruhem?",
+                options: ["V primárním je voda radioaktivní, v sekundárním nikoliv", "Primární je ve strojovně, sekundární v reaktoru", "V sekundárním se voda mění v led"],
                 correct: 0
+            },
+            {
+                q: "Proč se v reaktoru udržuje vysoký tlak 15,7 MPa?",
+                options: ["Aby pára více tlačila", "Aby voda nezačala vřít ani při teplotě 320 °C", "Kvůli stabilitě betonu"],
+                correct: 1
+            },
+            {
+                q: "Co vychází z chladicích věží?",
+                options: ["Radioaktivní plyn", "Oxid uhličitý (CO2)", "Čistá vodní pára"],
+                correct: 2
             }
         ];
 
@@ -214,7 +200,7 @@
             const grid = document.getElementById('buildings-grid');
             buildings.forEach(b => {
                 const card = document.createElement('div');
-                card.className = "building-card bg-white p-8 md:p-10 rounded-[2.5rem] cursor-pointer text-center flex flex-col items-center shadow-md";
+                card.className = "building-card bg-white p-8 rounded-[2.5rem] cursor-pointer text-center flex flex-col items-center shadow-md";
                 card.onclick = () => { window.location.hash = b.id; };
                 card.innerHTML = `
                     <div class="w-16 h-16 rounded-2xl ${b.color} text-white flex items-center justify-center mb-6 shadow-lg shadow-slate-100">
@@ -222,11 +208,10 @@
                     </div>
                     <h3 class="text-xl font-black mb-3 text-slate-800">${b.title}</h3>
                     <p class="text-slate-500 text-xs leading-relaxed px-2 line-clamp-3">${b.desc}</p>
-                    <div class="mt-6 text-blue-600 font-black text-[9px] uppercase tracking-[0.2em] opacity-60 italic">Více informací</div>
+                    <div class="mt-6 text-blue-600 font-black text-[9px] uppercase tracking-[0.2em] opacity-60">Fyzikální detaily</div>
                 `;
                 grid.appendChild(card);
             });
-            
             renderQuiz();
             lucide.createIcons();
             setTimeout(handleRouting, 100);
@@ -234,11 +219,9 @@
 
         function renderQuiz() {
             const container = document.getElementById('quiz-container');
-            container.innerHTML = quizData.map((q, qIdx) => `
+            container.innerHTML = `<h2 class="text-2xl font-black mb-8 text-center uppercase">Rychlý test znalostí</h2>` + quizData.map((q, qIdx) => `
                 <div class="mb-10 last:mb-0" id="question-${qIdx}">
-                    <p class="font-bold text-slate-800 mb-4 flex gap-3 italic text-sm md:text-base">
-                        <span class="text-blue-600 not-italic">${qIdx + 1}.</span> ${q.q}
-                    </p>
+                    <p class="font-bold text-slate-800 mb-4 italic text-sm md:text-base">${qIdx + 1}. ${q.q}</p>
                     <div class="grid gap-3">
                         ${q.options.map((opt, optIdx) => `
                             <label class="quiz-option flex items-center p-4 rounded-xl border-2 border-slate-100" data-q="${qIdx}" data-opt="${optIdx}">
@@ -254,59 +237,32 @@
         function evaluateQuiz() {
             let score = 0;
             let allAnswered = true;
-
-            quizData.forEach((q, idx) => {
-                if (!document.querySelector(`input[name="q${idx}"]:checked`)) {
-                    allAnswered = false;
-                }
-            });
-
-            if (!allAnswered) {
-                document.getElementById('quiz-error').classList.remove('hidden');
-                return;
-            }
-
+            quizData.forEach((q, idx) => { if (!document.querySelector(`input[name="q${idx}"]:checked`)) allAnswered = false; });
+            if (!allAnswered) { document.getElementById('quiz-error').classList.remove('hidden'); return; }
             document.getElementById('quiz-error').classList.add('hidden');
 
             quizData.forEach((q, idx) => {
                 const selected = document.querySelector(`input[name="q${idx}"]:checked`);
                 const optionsElements = document.querySelectorAll(`label[data-q="${idx}"]`);
-                
                 optionsElements.forEach(label => {
                     const optIdx = parseInt(label.getAttribute('data-opt'));
                     label.classList.add('disabled');
                     label.querySelector('input').disabled = true;
-
-                    if (optIdx === q.correct) {
-                        label.classList.add('correct');
-                        label.innerHTML += `<i data-lucide="check-circle-2" class="absolute right-4 text-green-600" size="18"></i>`;
-                    }
-                    if (selected && parseInt(selected.value) === optIdx && optIdx !== q.correct) {
-                        label.classList.add('wrong');
-                        label.innerHTML += `<i data-lucide="x-circle" class="absolute right-4 text-red-600" size="18"></i>`;
-                    }
+                    if (optIdx === q.correct) label.classList.add('correct');
+                    if (selected && parseInt(selected.value) === optIdx && optIdx !== q.correct) label.classList.add('wrong');
                 });
                 if (selected && parseInt(selected.value) === q.correct) score++;
             });
 
             const result = document.getElementById('quiz-result');
             result.classList.remove('hidden');
-            result.className = `mt-8 p-6 rounded-2xl text-center font-bold ${score === quizData.length ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`;
-            result.innerText = `Tvůj výsledek: ${score} z ${quizData.length} správně!`;
-            
+            result.className = `mt-8 p-6 rounded-2xl text-center font-bold bg-blue-100 text-blue-800`;
+            result.innerText = `Skóre: ${score} z ${quizData.length}`;
             document.getElementById('submit-quiz').classList.add('hidden');
             document.getElementById('reset-quiz').classList.remove('hidden');
-            lucide.createIcons();
         }
 
-        function resetQuiz() {
-            renderQuiz();
-            document.getElementById('quiz-result').classList.add('hidden');
-            document.getElementById('quiz-error').classList.add('hidden');
-            document.getElementById('submit-quiz').classList.remove('hidden');
-            document.getElementById('reset-quiz').classList.add('hidden');
-            lucide.createIcons();
-        }
+        function resetQuiz() { renderQuiz(); document.getElementById('quiz-result').classList.add('hidden'); document.getElementById('submit-quiz').classList.remove('hidden'); document.getElementById('reset-quiz').classList.add('hidden'); lucide.createIcons(); }
 
         function handleRouting() {
             const hash = window.location.hash.split('?')[0].replace('#', '');
@@ -316,30 +272,17 @@
 
         function renderDetail(b) {
             const content = document.getElementById('detail-content');
-            document.getElementById('url-tag').innerText = `ID: ${b.id.toUpperCase()}`;
+            document.getElementById('url-tag').innerText = `SEKCE: ${b.title.toUpperCase()}`;
             content.innerHTML = `
                 <div class="bg-white rounded-[3rem] md:rounded-[4rem] shadow-2xl overflow-hidden border border-slate-100 fade-in">
-                    <div class="${b.color} h-48 md:h-64 flex items-center justify-center relative overflow-hidden">
-                         <div class="absolute inset-0 opacity-20 flex items-center justify-center scale-150">
-                            ${b.visual}
-                         </div>
-                         <div class="relative z-10 p-6 md:p-8 bg-white/10 backdrop-blur-md rounded-[1.5rem] md:rounded-[2rem] border border-white/20">
-                            <i data-lucide="${b.icon}" size="64" class="text-white"></i>
-                         </div>
+                    <div class="${b.color} h-48 md:h-64 flex items-center justify-center">
+                         <i data-lucide="${b.icon}" size="80" class="text-white opacity-40"></i>
                     </div>
                     <div class="p-10 md:p-16">
-                        <div class="flex flex-col md:flex-row items-center gap-6 mb-10 border-b border-slate-100 pb-10 text-center md:text-left">
-                            <div class="p-5 rounded-2xl ${b.color} text-white shadow-xl shadow-slate-200">
-                                <i data-lucide="${b.icon}" size="40"></i>
-                            </div>
-                            <div>
-                                <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter">${b.title}</h1>
-                                <p class="text-blue-600 font-bold uppercase tracking-widest text-[10px] mt-2 italic">Fyzikální rozbor sekce</p>
-                            </div>
-                        </div>
+                        <h1 class="text-3xl md:text-5xl font-black text-slate-900 mb-8">${b.title}</h1>
                         <p class="text-lg md:text-xl text-slate-600 leading-relaxed font-light">${b.content}</p>
-                        <button onclick="goBack()" class="mt-16 w-full py-6 bg-slate-900 hover:bg-blue-600 text-white rounded-[2rem] font-black uppercase tracking-[0.2em] transition-all shadow-xl flex items-center justify-center gap-4 text-xs">
-                            <i data-lucide="arrow-left" size="18"></i> Zpět na hlavní mapu
+                        <button onclick="goBack()" class="mt-16 w-full py-6 bg-slate-900 hover:bg-blue-600 text-white rounded-[2rem] font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-4 text-xs">
+                            <i data-lucide="arrow-left" size="18"></i> Zpět do menu
                         </button>
                     </div>
                 </div>
@@ -350,17 +293,8 @@
             window.scrollTo(0,0);
         }
 
-        function renderHome() {
-            document.getElementById('home-page').classList.remove('hidden');
-            document.getElementById('detail-page').classList.add('hidden');
-            window.scrollTo(0,0);
-        }
-
-        function goBack() {
-            history.pushState("", document.title, window.location.pathname);
-            renderHome();
-        }
-
+        function renderHome() { document.getElementById('home-page').classList.remove('hidden'); document.getElementById('detail-page').classList.add('hidden'); window.scrollTo(0,0); }
+        function goBack() { history.pushState("", document.title, window.location.pathname); renderHome(); }
         window.addEventListener('hashchange', handleRouting);
         window.onload = init;
     </script>
