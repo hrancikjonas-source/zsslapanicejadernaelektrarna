@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
@@ -57,7 +57,7 @@
             <!-- Energetické porovnání -->
             <section class="max-w-5xl mx-auto pb-24 px-6">
                 <div class="bg-white rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 shadow-xl border border-slate-200">
-                    <h2 class="text-2xl md:text-3xl font-black mb-8 text-center uppercase tracking-tight">Hustota energie: Uran vs. Fosilní paliva</h2>
+                    <h2 class="text-2xl md:text-3xl font-black mb-8 text-center uppercase tracking-tight">Hustota energie: Uran vs. Fosila</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                         <div class="text-center p-8 bg-blue-50 rounded-3xl border border-blue-100">
                             <div class="text-blue-600 font-black text-4xl mb-2">1 tabletka</div>
@@ -143,7 +143,7 @@
                 color: 'bg-blue-600', 
                 desc: 'Srdce elektrárny s reaktorem VVER-1000 a primárním okruhem.',
                 visual: `<div class="relative w-24 h-24 flex items-center justify-center"><i data-lucide="atom" size="48" class="text-blue-200 animate-pulse"></i></div>`,
-                content: `V reaktoru probíhá řízená řetězová reakce štěpení jader Uranu-235. Neutrony narážejí do jader, která se štěpí, přičemž se uvolňuje obrovské množství vazebné energie ve formě tepla. Voda v primárním okruhu funguje jako moderátor (zpomaluje neutrony, aby vyvolaly další štěpení) a zároveň jako chladivo. Aby se voda nerozvařila ani při teplotě 320 °C, je udržována pod extrémním tlakem 15,7 MPa. Celý proces je regulován tyčemi z borové oceli, které pohlcují přebytečné neutrony.` 
+                content: `Reaktorový sál je uzavřen v masivní železobetonové schránce zvané kontejment s tloušťkou stěn až 1,2 metru. Uprostřed se nachází tlaková nádoba reaktoru VVER-1000, kde probíhá řízená štěpná reakce. Neutrony narážejí do jader Uranu-235, která se rozpadají a uvolňují kinetickou energii (teplo). Voda v primárním okruhu funguje jako moderátor, který zpomaluje rychlé neutrony na tzv. tepelné neutrony, jež lépe vyvolávají další štěpení. Aby se zabránilo varu vody při teplotě 320 °C, udržuje kompenzátor objemu v systému tlak 15,7 MPa. Bezpečnost hlídají havarijní tyče s vysokým obsahem bóru, které v případě potřeby spadnou do aktivní zóny do 4 sekund a okamžitě pohltí neutrony, čímž reakci zastaví.` 
             },
             { 
                 id: 'pomocne', 
@@ -152,7 +152,7 @@
                 color: 'bg-indigo-500', 
                 desc: 'Chemická úprava vody a bezpečnostní filtrace.', 
                 visual: `<div class="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center"><i data-lucide="shield-check" size="48" class="text-indigo-600"></i></div>`,
-                content: `Tento objekt zajišťuje životně důležitý chemický režim elektrárny. Voda v primárním okruhu musí mít specifické chemické složení, aby nedocházelo ke korozi materiálů. Zároveň se zde nacházejí výkonné filtrační stanice, které zachycují radioaktivní částice. Díky těmto systémům je vliv elektrárny na okolní ovzduší a vodu prakticky nulový.` 
+                content: `Budova pomocných provozů (BPP) je klíčová pro udržení stability celého systému. Hlavním úkolem je speciální úprava vody, která cirkuluje v reaktoru. Tato voda musí být demineralizovaná a chemicky ošetřená (např. kyselinou boritou pro regulaci výkonu), aby se minimalizovala koroze drahých materiálů. Součástí jsou také systémy pro zachycování a filtraci radioaktivních plynů a kapalin. Vzduch v kontejmentu je neustále čištěn přes speciální filtry s aktivním uhlím, které spolehlivě zachycují izotopy jódu a další částice. Díky těmto bariérám je radiační zátěž v okolí elektrárny nižší, než je přirozené pozadí v některých jiných částech ČR.` 
             },
             { 
                 id: 'strojovna', 
@@ -161,7 +161,7 @@
                 color: 'bg-amber-500', 
                 desc: 'Přeměna tepelné energie na mechanickou a elektrickou.', 
                 visual: `<div class="w-24 h-24 flex items-center justify-center"><i data-lucide="settings" size="64" class="text-amber-200 spin-slow"></i></div>`,
-                content: `Zde dochází k přeměně energií. Horká pára naráží na lopatky obří turbíny. Mechanická energie rotace je přenášena na společnou hřídel s generátorem. V generátoru se točí elektromagnet uvnitř statoru s měděným vinutím a indukuje elektrický proud. Jediný turbogenerátor Temelína má výkon přes 1000 MW, což stačí pro miliony domácností.` 
+                content: `Strojovna je kolosální hala dlouhá stovky metrů, ve které se nachází turbogenerátor. Horká pára ze sekundárního okruhu (vyráběná v parogenerátorech) proudí pod tlakem na lopatky turbíny. Turbína se skládá z jednoho vysokotlakého a tří nízkotlakých dílů, které se točí rychlostí 3000 otáček za minutu. Mechanická energie rotace je přenášena hřídelí na generátor. V něm se otáčí rotor (elektromagnet), který ve vinutí statoru indukuje střídavý elektrický proud o napětí 24 kV. Jediný takový generátor dodává výkon 1085 MW, což představuje obrovský tok energie přeměněný z neviditelného tepla jaderné reakce.` 
             },
             { 
                 id: 'veze', 
@@ -170,7 +170,7 @@
                 color: 'bg-cyan-500', 
                 desc: 'Dominantní výměníky tepla vysoké 155 metrů.', 
                 visual: `<div class="relative w-24 h-24 flex flex-col items-center justify-end"><div class="steam bg-white/40 w-8 h-8 rounded-full mb-2"></div><div class="steam bg-white/30 w-12 h-12 rounded-full mb-4" style="animation-delay: 1s"></div><i data-lucide="tower-control" size="48" class="text-cyan-200"></i></div>`,
-                content: `Chladicí věže uzavírají tepelný cyklus. Pára, která odevzdala energii turbíně, musí zkondenzovat zpět na vodu. K tomu slouží chladicí voda, která se následně ochlazuje v těchto věžích. Díky jejich specifickému tvaru vzniká komínový tah – vzduch ochlazuje vodní tříšť. To, co vidíte stoupat z věží, je pouze čistá vodní pára.` 
+                content: `Chladicí věže slouží k odvodu zbytkového tepla, které již nelze využít k výrobě elektřiny. Pára, která prošla turbínou, musí zkondenzovat zpět na kapalnou vodu, aby se dala čerpat zpět do parogenerátoru. Ke kondenzaci se využívá chladicí voda ze třetího okruhu. Tato voda se v chladicí věži rozstřikuje a stéká dolů, zatímco proti ní proudí vzduch. Hyperboloidní tvar věže zajišťuje přirozený komínový tah – teplý vlhký vzduch stoupá vzhůru a ochlazuje padající kapky vody. To, co vidíme jako bílá oblaka nad věžemi, je čistá vodní pára, nikoliv kouř. Odparem se z jedné věže ztratí až 300 litrů vody za sekundu, která se musí doplňovat z blízkých vodních toků (např. Vltavy).` 
             },
             { 
                 id: 'cerpaci', 
@@ -179,7 +179,7 @@
                 color: 'bg-blue-800', 
                 desc: 'Oběhová čerpadla pro transport tisíců tun vody.', 
                 visual: `<div class="flex gap-2"><i data-lucide="waves" size="32" class="text-blue-300 animate-bounce"></i><i data-lucide="waves" size="32" class="text-blue-300 animate-bounce" style="animation-delay: 0.2s"></i></div>`,
-                content: `Čerpací stanice pohánějí vodu v sekundárním okruhu mezi parogenerátory, turbínou a chladicími věžemi. Jsou navržena s vysokou redundancí – i kdyby jedno čerpadlo selhalo, ostatní okamžitě převezmou jeho funkci, aby byla zajištěna stabilní dodávka chlazení reaktoru za všech okolností.` 
+                content: `Vlastní spotřeba elektrárny (pro pohon čerpadel a systémů) činí cca 50 MW, což je výkon středně velké vodní elektrárny. Nejdůležitější částí jsou cirkulační čerpadla chladicí vody. Musí přečerpat až 50 000 m³ vody za hodinu. Systém je navržen tak, aby i při totálním výpadku napájení (blackoutu) byla zajištěna cirkulace vody pomocí nouzových dieselgenerátorů nebo hydrostatického spádu. Bez neustálého proudění vody by se teplo v reaktoru nahromadilo, což by mohlo vést k poškození paliva. Čerpací stanice jsou tedy kritickým bezpečnostním prvkem, který udržuje "tepelný tep" elektrárny v bezpečných mezích.` 
             },
             { 
                 id: 'rozvodna', 
@@ -188,7 +188,7 @@
                 color: 'bg-orange-600', 
                 desc: 'Vývod elektrického výkonu do sítě 400 kV.', 
                 visual: `<div class="w-24 h-24 flex items-center justify-center"><i data-lucide="zap" size="48" class="text-orange-300 animate-pulse"></i></div>`,
-                content: `V generátoru vzniká proud o napětí 24 kV. Pro přenos na velké vzdálenosti se napětí zvyšuje v transformátorech na 400 kV, aby se snížily tepelné ztráty ve vedení. Rozvodna pak bezpečně rozděluje tento výkon do přenosové soustavy ČR. Je to poslední článek řetězce vedoucího od atomu až k vaší zásuvce.` 
+                content: `V rozvodně dochází k finální distribuci energie. Proud z generátoru o napětí 24 000 V by při přenosu na velké vzdálenosti způsoboval obrovské tepelné ztráty v drátech (podle Joulův-Lenzova zákona). Proto se v blokových transformátorech napětí zvyšuje na velmi vysoké napětí 400 000 V (400 kV). Při takto vysokém napětí protéká vodiči menší proud při stejném přenášeném výkonu, což drasticky snižuje ztráty. Rozvodna je vybavena mohutnými vypínači a odpojovači, které dokáží bezpečně přerušit tok energie v případě poruchy v rozvodné síti ČR. Z tohoto místa odchází stabilní bezemisní energie, která tvoří přibližně 20 % celkové spotřeby České republiky.` 
             }
         ];
 
@@ -221,7 +221,7 @@
                         <i data-lucide="${b.icon}" size="28"></i>
                     </div>
                     <h3 class="text-xl font-black mb-3 text-slate-800">${b.title}</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed px-2">${b.desc}</p>
+                    <p class="text-slate-500 text-xs leading-relaxed px-2 line-clamp-3">${b.desc}</p>
                     <div class="mt-6 text-blue-600 font-black text-[9px] uppercase tracking-[0.2em] opacity-60 italic">Více informací</div>
                 `;
                 grid.appendChild(card);
